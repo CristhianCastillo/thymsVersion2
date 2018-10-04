@@ -1,0 +1,7 @@
+{
+  "name": "thyms",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

@@ -1,0 +1,113 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Thyms - Juan Carlos Gomez</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item>
+            <ion-label>Rack Seleccionado</ion-label>
+            <ion-select [(ngModel)]="rack">
+              <ion-option value="Rack 1">Rack 1</ion-option>
+              <ion-option value="Rack 2">Rack 2</ion-option>
+              <ion-option value="Rack 3">Rack 3</ion-option>
+              <ion-option value="Rack 4">Rack 4</ion-option>
+              <ion-option value="Rack 5">Rack 5</ion-option>
+              <ion-option value="Rack 6">Rack 6</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+      <ion-col>
+        <ion-list>
+          <ion-item>
+            <ion-label>Factura Seleccionada</ion-label>
+            <ion-select [(ngModel)]="factura">
+              <ion-option value="Factura 1">Factura 1</ion-option>
+              <ion-option value="Factura 2">Factura 2</ion-option>
+              <ion-option value="Factura 3">Factura 3</ion-option>
+              <ion-option value="Factura 4">Factura 4</ion-option>
+              <ion-option value="Factura 5">Factura 5</ion-option>
+              <ion-option value="Factura 6">Factura 6</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ngx-datatable class="material" [sortType]="'multi'" [headerHeight]="50" [footerHeight]="40" [rowHeight]="50"
+                 [rows]="productos"
+                 [columnMode]="'flex'" [sortType]="'multi'" [reorderable]="false" [limit]="9"
+                 [selected]="selected"
+                 [selectionType]="'cell'"
+                 (select)="onSelect($event)"
+                 (activate)="onActivate($event)">
+
+    <ngx-datatable-column name="" prop="" editable="true" frozenLeft="True" [flexGrow]="1">
+      <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row"
+                   let-group="group">
+        <button ion-button small color="danger" (click)="eliminarProducto(row)" >Eliminar</button>
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="Referencia" prop="referencia" editable="false" frozenLeft="True"
+                          [flexGrow]="1"></ngx-datatable-column>
+
+
+    <ngx-datatable-column name="Descripción" prop="descripcion" editable="false" frozenLeft="True"
+                          [flexGrow]="3">
+      <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+        <label (click)="filaSeleccionada(row)">{{value}}</label>
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="Cantidad" prop="cantidad" editable="false" frozenLeft="True"
+                          [flexGrow]="1"></ngx-datatable-column>
+
+    <ngx-datatable-column name="" prop="" editable="true" frozenLeft="True" [flexGrow]="1">
+      <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row"
+                   let-group="group">
+        <button ion-button small color="secondary" (click)="agregarProducto(row)">Agregar</button>
+      </ng-template>
+    </ngx-datatable-column>
+
+
+    <!--<ngx-datatable-footer>-->
+    <!--<ng-template-->
+    <!--ngx-datatable-footer-template-->
+    <!--let-rowCount="rowCount"-->
+    <!--let-pageSize="pageSize"-->
+    <!--let-selectedCount="selectedCount"-->
+    <!--let-curPage="curPage"-->
+    <!--let-offset="offset">-->
+    <!--<div style="padding: 10px 10px">-->
+    <!--<div>-->
+    <!--<strong>Nombre Empleado</strong>: Antonio Gonzales-->
+    <!--</div>-->
+    <!--<hr style="width:100%" />-->
+    <!--<div>-->
+    <!--&lt;!&ndash;Rows: {{rowCount}} |&ndash;&gt;-->
+    <!--&lt;!&ndash;Size: {{pageSize}} |&ndash;&gt;-->
+    <!--&lt;!&ndash;Current: {{curPage}} |&ndash;&gt;-->
+    <!--&lt;!&ndash;Offset: {{offset}}&ndash;&gt;-->
+    <!--Productos: 12 |-->
+    <!--Thyms: 3 |-->
+    <!--Leale: 3 |-->
+    <!--Visalia: 0 |-->
+    <!--Publicidad: 2-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</ng-template>-->
+    <!--</ngx-datatable-footer>-->
+  </ngx-datatable>
+  <p text-center><strong>Productos:</strong> 12 | <strong>Thyms:</strong> 3 | <strong>Leale:</strong> 3 | <strong>Visalia:</strong>
+    0 | <strong>Publicidad:</strong> 2</p>
+</ion-content>

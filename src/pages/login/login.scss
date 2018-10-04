@@ -1,0 +1,23 @@
+page-login {
+  .item-input-has-focus .label-md[floating], .input-has-focus .label-md[floating]{
+    color: green; //label color when focusing
+  }
+  .item-input .label-md{
+    color: green; //label color
+  }
+
+  .item-md.item-input .item-inner {
+    border-bottom-color: green !important;
+  }
+  .img-placeholder-background{
+    color: antiquewhite;
+  }
+  .footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    top: 450px;
+    text-align: center;
+  }
+}

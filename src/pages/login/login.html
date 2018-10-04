@@ -1,0 +1,52 @@
+<ion-header>
+  <!-- <ion-navbar color=''>
+      <ion-title>Iniciar Sesión</ion-title>
+  </ion-navbar> -->
+</ion-header>
+
+<ion-content>
+  <form [formGroup]= "loginForm" (ngSubmit) ="validarDatos()">
+    <ion-list>
+      <div padding style="text-align: center;">
+        <img src="../../assets/imgs/login.png" class="slide-image" />
+        <h3>Iniciar Sesión</h3>
+      </div>
+      <ion-item>
+        <ion-label color="principal" floating>Nombre usuario</ion-label>
+        <ion-input formControlName="usuario" color="principal" type="text" id="usuario"></ion-input>
+      </ion-item>
+
+      <ion-item no-lines>
+        <ion-label floating>Contraseña</ion-label>
+        <ion-input formControlName="password" type="password" id="password"></ion-input>
+      </ion-item>
+
+      <!-- <ion-item>
+          <ion-label>Recuérdame</ion-label>
+          <ion-checkbox  [(ngModel)]="recordar" name="recordar"></ion-checkbox>
+      </ion-item> -->
+    </ion-list>
+    <div padding>
+      <button ion-button block color="principal" type="submit" [disabled]="!loginForm.valid">Ingresar</button>
+    </div>
+  </form>
+  <div class="footer">
+    <img src="../../assets/imgs/bySIP.png" style="width: 170px; height: 80px;" />
+  </div>
+  <!-- <ion-item no-lines>
+      <div style="text-align: right;">
+          <a (click)="goResetPassword()">¿Olvidaste tu contraseña?</a>
+      </div>
+  </ion-item> -->
+  <!-- <br>
+  <ion-toolbar>
+      <div padding>
+          <p><strong>¿NO ESTÁS REGISTRADO?</strong></p>
+          <p>
+              Llena el formulario de registro y podrás disfrutar al maximo el cuidado que solo tu le puedes brindar a tus mascotas con
+              <strong>Mascotas.ga</strong>.
+          </p>
+          <button ion-button (click)="goRegister()" color="dark" block>Registrate</button>
+      </div>
+  </ion-toolbar> -->
+</ion-content>
