@@ -13,8 +13,86 @@ export interface Config {
 })
 export class HomePage {
 
+  private rackSeleccionado: string;
+  private facturaSeleccionada: string;
   public config : Config;
   public rows : any;
+
+
+  public racks: any = [
+    { id: 'Rack 1'},
+    { id: 'Rack 2'},
+    { id: 'Rack 3'},
+    { id: 'Rack 4'},
+    { id: 'Rack 5'},
+    { id: 'Rack 6'}
+  ];
+
+  public facturas: any = [
+    {
+      id: 'FA_0235435',
+      nombre: 'Factura 1'
+    },
+    {
+      id: 'FA_0235436',
+      nombre: 'Factura 2'
+    },
+    {
+      id: 'FA_0235437',
+      nombre: 'Factura 3'
+    },
+    {
+      id: 'FA_0235438',
+      nombre: 'Factura 4'
+    },
+    {
+      id: 'FA_0235439',
+      nombre: 'Factura 5'
+    },
+    {
+      id: 'FA_0235440',
+      nombre: 'Factura 6'
+    },
+    {
+      id: 'FA_0235441',
+      nombre: 'Factura 7'
+    },
+    {
+      id: 'FA_0235442',
+      nombre: 'Factura 8'
+    },
+    {
+      id: 'FA_0235443',
+      nombre: 'Factura 9'
+    },
+    {
+      id: 'FA_0235444',
+      nombre: 'Factura 10'
+    },
+    {
+      id: 'FA_0235445',
+      nombre: 'Factura 11'
+    },
+    {
+      id: 'FA_0235446',
+      nombre: 'Factura 12'
+    },
+    {
+      id: 'FA_0235447',
+      nombre: 'Factura 13'
+    },
+    {
+      id: 'FA_0235448',
+      nombre: 'Factura 14'
+    },
+    {
+      id: 'FA_0235449',
+      nombre: 'Factura 15'
+    }
+  ];
+
+
+
   public productos: any = [
     {
       idFactura: '1',
@@ -113,8 +191,11 @@ export class HomePage {
       enlistado: false
     }
   ];
+
   selected: any[] = [];
   constructor(public navCtrl: NavController, private  alertController: AlertController) {
+    this.rackSeleccionado = 'No seleccionado';
+    this.facturaSeleccionada = 'No seleccionada';
   }
 
   ionViewDidLoad() {
@@ -148,5 +229,13 @@ export class HomePage {
     console.log(producto);
   }
 
+  cambiarRackSeleccionado(rack: string){
+    this.rackSeleccionado = rack;
+    console.log("Rack Seleccionado: ", rack);
+  }
 
+  cambiarFacturaSeleccionada(factura: string){
+    this.facturaSeleccionada = factura;
+    console.log("Fatura Seleccionada: ", factura);
+  }
 }
