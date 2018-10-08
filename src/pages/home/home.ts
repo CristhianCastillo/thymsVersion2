@@ -17,8 +17,6 @@ export class HomePage {
   private facturaSeleccionada: string;
   public config : Config;
   public rows : any;
-
-
   public racks: any = [
     { id: 'Rack 1'},
     { id: 'Rack 2'},
@@ -27,7 +25,6 @@ export class HomePage {
     { id: 'Rack 5'},
     { id: 'Rack 6'}
   ];
-
   public facturas: any = [
     {
       id: 'FA_0235435',
@@ -90,9 +87,6 @@ export class HomePage {
       nombre: 'Factura 15'
     }
   ];
-
-
-
   public productos: any = [
     {
       idFactura: '1',
@@ -100,7 +94,8 @@ export class HomePage {
       referencia: 'Z1.0',
       descripcion: 'N1 1-0 Negro',
       cantidad: 6,
-      enlistado: false
+      enlistado: false,
+      estado: ''
     },
     {
       idFactura: '1',
@@ -108,7 +103,8 @@ export class HomePage {
       referencia: 'Z3.0',
       descripcion: 'N3 3-0 CASTAÑO OSCURO',
       cantidad: 2,
-      enlistado: false
+      enlistado: false,
+      estado: ''
     },
     {
       idFactura: '1',
@@ -116,7 +112,8 @@ export class HomePage {
       referencia: 'Z1.0',
       descripcion: 'N1 1-0 Negro',
       cantidad: 6,
-      enlistado: false
+      enlistado: false,
+      estado: ''
     },
     {
       idFactura: '1',
@@ -124,7 +121,8 @@ export class HomePage {
       referencia: 'Z3.0',
       descripcion: 'N3 3-0 CASTAÑO OSCURO',
       cantidad: 2,
-      enlistado: false
+      enlistado: false,
+      estado: ''
     },
     {
       idFactura: '1',
@@ -132,7 +130,8 @@ export class HomePage {
       referencia: 'Z1.0',
       descripcion: 'N1 1-0 Negro',
       cantidad: 6,
-      enlistado: false
+      enlistado: false,
+      estado: ''
     },
     {
       idFactura: '1',
@@ -140,7 +139,8 @@ export class HomePage {
       referencia: 'Z3.0',
       descripcion: 'N3 3-0 CASTAÑO OSCURO',
       cantidad: 2,
-      enlistado: false
+      enlistado: false,
+      estado: ''
     },
     {
       idFactura: '1',
@@ -148,7 +148,8 @@ export class HomePage {
       referencia: 'Z1.0',
       descripcion: 'N1 1-0 Negro',
       cantidad: 6,
-      enlistado: false
+      enlistado: false,
+      estado: ''
     },
     {
       idFactura: '1',
@@ -156,7 +157,8 @@ export class HomePage {
       referencia: 'Z3.0',
       descripcion: 'N3 3-0 CASTAÑO OSCURO',
       cantidad: 2,
-      enlistado: false
+      enlistado: false,
+      estado: ''
     },
     {
       idFactura: '1',
@@ -164,7 +166,8 @@ export class HomePage {
       referencia: 'Z1.0',
       descripcion: 'N1 1-0 Negro',
       cantidad: 6,
-      enlistado: false
+      enlistado: false,
+      estado: ''
     },
     {
       idFactura: '1',
@@ -172,7 +175,8 @@ export class HomePage {
       referencia: 'Z3.0',
       descripcion: 'N3 3-0 CASTAÑO OSCURO',
       cantidad: 2,
-      enlistado: false
+      enlistado: false,
+      estado: ''
     },
     {
       idFactura: '1',
@@ -180,7 +184,8 @@ export class HomePage {
       referencia: 'Z1.0',
       descripcion: 'N1 1-0 Negro',
       cantidad: 6,
-      enlistado: false
+      enlistado: false,
+      estado: ''
     },
     {
       idFactura: '1',
@@ -188,18 +193,17 @@ export class HomePage {
       referencia: 'Z3.0',
       descripcion: 'N3 3-0 CASTAÑO OSCURO',
       cantidad: 2,
-      enlistado: false
+      enlistado: false,
+      estado: ''
     }
   ];
-
-  selected: any[] = [];
+  public selected: any[] = [];
   constructor(public navCtrl: NavController, private  alertController: AlertController) {
     this.rackSeleccionado = 'No seleccionado';
     this.facturaSeleccionada = 'No seleccionada';
   }
 
   ionViewDidLoad() {
-
   }
 
   onSelect(event) {
@@ -210,30 +214,54 @@ export class HomePage {
     console.log('Event: activate', event);
   }
 
-  filaSeleccionada(row) {
+  obtenerFilaSeleccionada(row): string {
     let alert =  this.alertController.create({
       title: 'Seleccionado',
       message: `${row.idFactura} - ${row.referencia} - ${row.descripcion}`,
       buttons: ['Aceptar']
     });
     alert.present();
+    return 'row-color';
   }
 
-  agregarProducto(producto){
-    console.log('Este es el producto seleccionado: ');
-    console.log(producto);
+  agregarProducto(producto, index: number){
+    if(producto.enlistado){
+      producto.enlistado = false;
+    } else {
+      producto.enlistado = true;
+    }
+    this.productos[index] = producto;
+    console.log(this.productos);
   }
 
-  eliminarProducto(producto){
-    console.log('Este es el producto seleccionado para eliminar:');
-    console.log(producto);
+  /**
+   *
+   * @param producto
+   * @param index
+   */
+  eliminarProducto(producto, index: number){
+    if(producto.enlistado){
+      producto.enlistado = false;
+    } else {
+      producto.enlistado = true;
+    }
+    this.productos[index] = producto;
+    console.log(this.productos);
   }
 
+  /**
+   *
+   * @param rack
+   */
   cambiarRackSeleccionado(rack: string){
     this.rackSeleccionado = rack;
     console.log("Rack Seleccionado: ", rack);
   }
 
+  /**
+   *
+   * @param factura
+   */
   cambiarFacturaSeleccionada(factura: string){
     this.facturaSeleccionada = factura;
     console.log("Fatura Seleccionada: ", factura);

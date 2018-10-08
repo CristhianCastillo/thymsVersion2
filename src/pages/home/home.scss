@@ -46,19 +46,17 @@ page-home {
       }
     }
   }
-
-
   // Style rules for the footer pagination elements
   .datatable-icon-done-all:before {
     content: ">>";
   }
 
   .datatable-icon-left:before {
-    content: "<";
+    content: "Atras";
   }
 
   .datatable-icon-right:before {
-    content: ">";
+    content: "Siguiente";
   }
 
   .datatable-icon-skip:before {

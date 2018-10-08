@@ -35,7 +35,7 @@
           <ngx-datatable-column name="" prop="" editable="true" frozenLeft="True" [flexGrow]="1">
             <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row"
                          let-group="group">
-              <button ion-button small color="danger" (click)="eliminarProducto(row)" >
+              <button ion-button small color="danger" (click)="eliminarProducto(row, rowIndex)" [disabled]="!row.enlistado">
                 <ion-icon name="trash"></ion-icon>
               </button>
             </ng-template>
@@ -48,7 +48,10 @@
           <ngx-datatable-column name="Descripción" prop="descripcion" editable="false" frozenLeft="True"
                                 [flexGrow]="3">
             <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
-              <label (click)="filaSeleccionada(row)">{{value}}</label>
+              <label *ngIf="!row.enlistado; else noEnlistado" (click)="obtenerFilaSeleccionada(row)">{{value}}</label>
+              <ng-template #noEnlistado>
+                <label (click)="obtenerFilaSeleccionada(row)">{{value}} - LISTO!</label>
+              </ng-template>
             </ng-template>
           </ngx-datatable-column>
 
@@ -58,7 +61,7 @@
           <ngx-datatable-column name="" prop="" editable="true" frozenLeft="True" [flexGrow]="1">
             <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row"
                          let-group="group">
-              <button ion-button small color="secondary" (click)="agregarProducto(row)">
+              <button ion-button small color="secondary" (click)="agregarProducto(row, rowIndex)" [disabled]="row.enlistado">
                 <ion-icon name="cart"></ion-icon>
               </button>
             </ng-template>
