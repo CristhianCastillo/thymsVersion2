@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Platform, AlertController } from 'ionic-angular';
+import { NavController, NavParams, Platform, AlertController, MenuController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { LoginProvider } from '../../providers/login/login';
@@ -16,7 +16,7 @@ export class LoginPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform,
               public loadingCtrl: LoadingController, private formBuilder: FormBuilder, public alertController: AlertController,
-              private loginService: LoginProvider) {
+              private loginService: LoginProvider, private menu: MenuController) {
     let backAction = platform.registerBackButtonAction(() => {
       this.navCtrl.pop();
       backAction();
@@ -26,6 +26,20 @@ export class LoginPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
+  }
+
+  ionViewDidEnter() {
+    this.menu.swipeEnable(false);
+    // If you have more than one side menu, use the id like below
+    // this.menu.swipeEnable(false, 'menu1');
+  }
+
+  ionViewWillLeave() {
+    // Don't forget to return the swipe to normal, otherwise
+    // the rest of the pages won't be able to swipe to open menu
+    this.menu.swipeEnable(true);
+    // If you have more than one side menu, use the id like below
+    // this.menu.swipeEnable(true, 'menu1');
   }
 
   private createForm(){

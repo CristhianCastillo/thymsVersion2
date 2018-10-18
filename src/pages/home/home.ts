@@ -206,8 +206,8 @@ export class HomePage {
 
   public selected: any[] = [];
   constructor(public navCtrl: NavController, private  alertController: AlertController) {
-    this.rackSeleccionado = 'No seleccionado';
-    this.facturaSeleccionada = 'No seleccionada';
+    this.rackSeleccionado = this.racks[0].id;
+    this.facturaSeleccionada = this.facturas[0].id;
   }
 
   ionViewDidLoad() {
