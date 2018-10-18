@@ -44,13 +44,14 @@
           <ngx-datatable-column name="Referencia" prop="referencia" editable="false" frozenLeft="True"
                                 [flexGrow]="1"></ngx-datatable-column>
 
-
           <ngx-datatable-column name="Descripción" prop="descripcion" editable="false" frozenLeft="True"
                                 [flexGrow]="3">
             <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
               <label *ngIf="!row.enlistado; else noEnlistado" (click)="obtenerFilaSeleccionada(row)">{{value}}</label>
+              <!-- <ion-icon *ngIf="!row.enlistado;" name="close-circle"></ion-icon> -->
               <ng-template #noEnlistado>
                 <label (click)="obtenerFilaSeleccionada(row)">{{value}} - LISTO!</label>
+                <ion-icon name="checkmark-circle"></ion-icon>
               </ng-template>
             </ng-template>
           </ngx-datatable-column>
@@ -84,6 +85,6 @@
     </ion-row>
   </ion-grid>
 
-  <p text-center><strong>Productos:</strong> 12 | <strong>Thyms:</strong> 3 | <strong>Leale:</strong> 3 | <strong>Visalia:</strong>
-    0 | <strong>Publicidad:</strong> 2</p>
+  <p text-center><strong>Productos:</strong> {{totalProductos.total}} | <strong>Thyms:</strong> {{totalProductos.thyms}} | <strong>Leale:</strong> {{totalProductos.leale}} | <strong>Visalia:</strong>
+    {{totalProductos.visalia}} | <strong>Publicidad:</strong> {{totalProductos.publicidad}} </p>
 </ion-content>

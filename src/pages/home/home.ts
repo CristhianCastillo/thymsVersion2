@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { NavController, AlertController } from 'ionic-angular';
-
 
 export interface Config {
   technologies: string;
@@ -13,8 +11,8 @@ export interface Config {
 })
 export class HomePage {
 
-  private rackSeleccionado: string;
-  private facturaSeleccionada: string;
+  public rackSeleccionado: string;
+  public facturaSeleccionada: string;
   public config : Config;
   public rows : any;
   public racks: any = [
@@ -94,7 +92,7 @@ export class HomePage {
       referencia: 'Z1.0',
       descripcion: 'N1 1-0 Negro',
       cantidad: 6,
-      enlistado: false,
+      enlistado: true,
       estado: ''
     },
     {
@@ -197,6 +195,15 @@ export class HomePage {
       estado: ''
     }
   ];
+
+  public totalProductos: any = {
+      total: 12,
+      thyms: 3,
+      leale: 3,
+      visalia: 67,
+      publicidad: 2
+  }
+
   public selected: any[] = [];
   constructor(public navCtrl: NavController, private  alertController: AlertController) {
     this.rackSeleccionado = 'No seleccionado';
